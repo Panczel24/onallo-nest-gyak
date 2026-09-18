@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quadratic</title>
+</head>
+
+<body>
+
+    <a href="/">főoldal</a>
+
+    <form action="/quadratic" method="GET">
+        <label for="a">a:</label>
+        <input type="number" step="any" name="a" id="a">
+        <br><br>
+        <label for="b">b:</label>
+        <input type="number" step="any" name="b" id="b">
+        <br><br>
+        <label for="c">c:</label>
+        <input type="number" step="any" name="c" id="c">
+        <br><br>
+        <button type="submit">Számolás</button>
+    </form>
+
+    <% if (eredmeny) { %>
+        <h2>Eredmény:</h2>
+        <p>
+            <%= eredmeny %>
+        </p>
+        <% } %>
+
+</body>
+
+</html>

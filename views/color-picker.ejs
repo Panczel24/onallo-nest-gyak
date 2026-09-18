@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ColorPicker</title>
+</head>
+<a href="/">Index</a>
+
+<body style="color: <%= szin %>">
+
+    <h1>Színválasztó</h1>
+
+    <form action="/color-picker" method="GET">
+
+        <input type="color" name="szin" value="<%= szin %>">
+
+        <button type="submit">Szín kiválasztása</button>
+
+    </form>
+    <p>
+        Színválasztó weboldal ahol a szöveg színe a kiválasztott szín
+    </p>
+
+</body>
+
+</html>

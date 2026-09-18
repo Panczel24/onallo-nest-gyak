@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keresés</title>
 </head>
+
 <body>
-    <a href="/" >Főoldal</a>
+    <a href="/">Főoldal</a>
+
 
 
     <form action="/search" method="GET">
@@ -18,21 +21,24 @@
     </form>
 
 
-    <% if (talalatok.length === 0) { %>
+    <% if (talalatok.length===0) { %>
 
         <p>Nincs találat.</p>
 
-    <% } else { %>
+        <% } else { %>
 
-        <h2>Találatok:</h2>
+            <h2>Találatok:</h2>
 
-        <ul>
-            <% talalatok.forEach((talalat) => { %>
-                <li><%= talalat %></li>
-            <% }) %>
-        </ul>
+            <ul>
+                <% talalatok.forEach((talalat)=> { %>
+                    <li>
+                        <%= talalat %>
+                    </li>
+                    <% }) %>
+            </ul>
 
-    <% } %>
+            <% } %>
 
 </body>
+
 </html>

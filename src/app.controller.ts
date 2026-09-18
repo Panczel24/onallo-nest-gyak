@@ -85,5 +85,57 @@ export class AppController {
   }
 
 
+  @Get('color-picker')
+  @Render('color-picker')
+  colorPicker(@Query('szin') szin: string) {
+
+    if (!szin) {
+      szin = '#000000';
+    }
+
+    return {
+      szin
+    };
+  }
+
+
+  @Get('quadratic')
+  @Render('quadratic')
+  GetQuadratic(
+    @Query('a') a: string, @Query('b') b: string, @Query('c') c: string
+  ) {
+
+    if (!a || !b || !c) {
+      return {
+        eredmeny: ''
+      };
+    }
+
+    const aSzam = Number(a);
+    const bSzam = Number(b);
+    const cSzam = Number(c);
+
+    const diszkriminans = bSzam * bSzam - 4 * aSzam * cSzam;
+
+    if (aSzam === 0) {
+      return {
+        eredmeny: 'Az a nem lehet 0!'
+      };
+    }
+
+    if (diszkriminans < 0) {
+      return {
+        eredmeny: 'Nincs valós megoldás.'
+      };
+    }
+
+    const x1 = (-bSzam + Math.sqrt(diszkriminans)) / (2 * aSzam);
+    const x2 = (-bSzam - Math.sqrt(diszkriminans)) / (2 * aSzam);
+
+    return {
+      eredmeny: `x1 = ${x1}, x2 = ${x2}`
+    };
+  }
+
 }
 
