@@ -1,5 +1,7 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Query, Render } from '@nestjs/common';
 import { AppService } from './app.service.js';
+import * as fs from 'fs';
+import { Criminal } from './criminal.js';
 
 @Controller()
 export class AppController {
@@ -35,23 +37,53 @@ export class AppController {
   getRedBlue() {
     let szin = "";
     const szam = Math.random();
-    if(szam<0.5){
+    //const bgColor = szam >0.5 ? "blue" : "red"
+    if (szam < 0.5) {
       szin = "red";
-    }else{
+    } else {
       szin = "blue"
     }
 
     return {
       szin
     };
-
-
-
-
-
-
-
-
   }
+
+
+
+  @Get("wanted")
+  @Render("wanted")
+  getWanted() {
+
+    const criminal = JSON.parse(
+      fs.readFileSync('wanted.json', { encoding: 'utf-8' })
+    ) as Criminal;
+
+    return { criminal };
+  }
+
+
+  @Get('search')
+  @Render("search")
+  searchCrime(@Query("keresett") keresett: string) {
+
+    if (!keresett) {
+      return {
+        talalatok: []
+      }
+    }
+
+    const criminal = JSON.parse(
+      fs.readFileSync('wanted.json', { encoding: 'utf-8' })
+    ) as Criminal;
+
+    return {
+      talalatok: criminal.crimes.filter(c =>
+        c.toLowerCase().includes(keresett.toLowerCase())
+      )
+    }
+  }
+
+
 }
 
